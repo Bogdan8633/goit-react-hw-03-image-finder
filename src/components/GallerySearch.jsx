@@ -21,7 +21,7 @@ class GallerySearch extends Component {
       this.setState({ loading: true });
       axios
         .get(
-          `https://pixabay.com/ai/?q=${search}&page=1&key=31955904-7341a4dddd0022ded7445126a&image_type=photo&orientation=horizontal&per_page=12`
+          `https://pixabay.com/api/?q=${search}&page=1&key=31955904-7341a4dddd0022ded7445126a&image_type=photo&orientation=horizontal&per_page=12`
         )
         .then(({ data }) => {
           this.setState({ items: data.hits });
