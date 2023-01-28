@@ -33,7 +33,7 @@ img {
 /*
  * Стили компонента SearchForm
  */
-.SearchForm {
+/* .SearchForm {
   display: flex;
   align-items: center;
   width: 100%;
@@ -88,7 +88,7 @@ img {
 .SearchForm-input::placeholder {
   font: inherit;
   font-size: 18px;
-}
+} */
 
 /*
  * Стили компонента ImageGallery

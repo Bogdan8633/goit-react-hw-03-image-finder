@@ -1,11 +1,11 @@
-import ImageGallery from './ImageGalery/ImageGallery';
-
 // import styles from './app.module.css';
+import GallerySearch from './GallerySearch';
 
 export const App = () => {
   return (
     <>
-      <ImageGallery></ImageGallery>
+      <GallerySearch />
+      {/* <ImageGallery></ImageGallery> */}
     </>
   );
 };
