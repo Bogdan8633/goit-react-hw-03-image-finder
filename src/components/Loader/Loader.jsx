@@ -11,8 +11,8 @@ const Loader = () => {
         radius="9"
         color="green"
         ariaLabel="three-dots-loading"
-        wrapperStyle
-        wrapperClass
+        wrapperStyle={{}}
+        wrapperClass="wrapper-class"
       />
     </div>
   );
