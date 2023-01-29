@@ -1,9 +1,36 @@
+import { Component } from 'react';
+import { createPortal } from 'react-dom';
+
 import styles from './modal.module.css';
 
-{
-  /* <div class="overlay">
-  <div class="modal">
-    <img src="" alt="" />
-  </div>
-</div> */
+const modalRoot = document.querySelector('#modal-root');
+
+class Modal extends Component {
+  componentDidMount() {
+    document.addEventListener('keydown', this.unplugModal);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.unplugModal);
+  }
+
+  unplugModal = ({ target, currentTarget, code }) => {
+    if (target === currentTarget || code === 'Escape') {
+      this.props.close();
+    }
+  };
+
+  render() {
+    const { children } = this.props;
+    const { unplugModal } = this;
+
+    return createPortal(
+      <div className={styles.Overlay} onClick={unplugModal}>
+        <div className={styles.Modal}>{children}</div>
+      </div>,
+      modalRoot
+    );
+  }
 }
+
+export default Modal;
