@@ -2,6 +2,7 @@ import { Component } from 'react';
 
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGalery/ImageGallery';
+import Loader from './Loader/Loader';
 import Button from './Button/Button';
 import Modal from './Modal/Modal.jsx';
 
@@ -67,9 +68,9 @@ class GallerySearch extends Component {
       <>
         <Searchbar onSubmit={searchPictures} />
         <ImageGallery items={items} showImage={showImage} />
-        {loading && <p>...Loading...but you must CHANGE this component</p>}
+        {loading && <Loader />}
         {error && <p className={styles.errorMessage}>{error}</p>}
-        {Boolean(items.length) && <Button onloadMore={loadMore} />}
+        {Boolean(items.length) && !loading && <Button onloadMore={loadMore} />}
         {showModal && (
           <Modal close={closeModal}>
             <img src={imageDetails} alt="" />
