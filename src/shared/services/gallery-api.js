@@ -17,6 +17,6 @@ export const searchImages = async (q, page = 1) => {
       orientation: 'horizontal',
     },
   });
-  console.log(data);
+  // console.log(data);
   return data.hits;
 };

@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 
 import styles from './modal.module.css';
@@ -34,3 +35,7 @@ class Modal extends Component {
 }
 
 export default Modal;
+
+Modal.propTypes = {
+  close: PropTypes.func.isRequired,
+};
