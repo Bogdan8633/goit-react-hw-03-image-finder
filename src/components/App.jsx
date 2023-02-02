@@ -46,7 +46,13 @@ export class App extends Component {
   }
 
   searchPictures = ({ search }) => {
-    this.setState({ search, items: [], page: 1 });
+    this.setState({
+      search,
+      items: [],
+      page: 1,
+      error: null,
+      hitsQuantity: null,
+    });
   };
 
   loadMore = () => {
