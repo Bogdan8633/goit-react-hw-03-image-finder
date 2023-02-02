@@ -19,6 +19,7 @@ export class App extends Component {
     page: 1,
     showModal: false,
     imageDetails: '',
+    hitsQuantity: null,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -33,7 +34,10 @@ export class App extends Component {
       this.setState({ loading: true });
       const { search, page } = this.state;
       const data = await searchImages(search, page);
-      this.setState(({ items }) => ({ items: [...items, ...data] }));
+      data.hits.length === 0
+        ? this.setState({ error: 'Not found' })
+        : this.setState(({ items }) => ({ items: [...items, ...data.hits] }));
+      this.setState({ hitsQuantity: data.totalHits });
     } catch (error) {
       this.setState({ error: error.message });
     } finally {
@@ -61,16 +65,21 @@ export class App extends Component {
   };
 
   render() {
-    const { items, loading, error, showModal, imageDetails } = this.state;
+    const { items, loading, error, showModal, imageDetails, hitsQuantity } =
+      this.state;
     const { searchPictures, loadMore, showImage, closeModal } = this;
 
     return (
       <>
         <Searchbar onSubmit={searchPictures} />
-        <ImageGallery items={items} showImage={showImage} />
+        {items.length !== 0 && (
+          <ImageGallery items={items} showImage={showImage} />
+        )}
         {loading && <Loader />}
         {error && <p className={styles.errorMessage}>{error}</p>}
-        {Boolean(items.length) && !loading && <Button onloadMore={loadMore} />}
+        {hitsQuantity > items.length && !loading && (
+          <Button onloadMore={loadMore} />
+        )}
         {showModal && (
           <Modal close={closeModal}>
             <img src={imageDetails} alt="" />

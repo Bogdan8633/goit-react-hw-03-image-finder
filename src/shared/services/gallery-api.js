@@ -18,5 +18,6 @@ export const searchImages = async (q, page = 1) => {
     },
   });
   // console.log(data);
-  return data.hits;
+  return data;
+  // return data.hits;
 };
